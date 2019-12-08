@@ -9,11 +9,28 @@
 import UIKit
 
 class ViewController: UIViewController {
+    
+    // MARK: - IBOutlet
+    
+    // MARK: - Property
 
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setup()
+        updateViews()
     }
-
+    
+    // MARK: - Function
 }
 
+// MARK: - Private Function
+private extension ViewController {
+    func setup() {
+        
+    }
+    
+    func updateViews() {
+        
+    }
+}
