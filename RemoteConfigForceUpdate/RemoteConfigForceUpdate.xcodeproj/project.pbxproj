@@ -81,11 +81,9 @@
 			children = (
 				1E1086B5239D22D20047F276 /* AppDelegate.swift */,
 				1E1086B7239D22D20047F276 /* SceneDelegate.swift */,
-				1E1086B9239D22D20047F276 /* ViewController.swift */,
-				1E1086BB239D22D20047F276 /* Main.storyboard */,
-				1E1086BE239D22D40047F276 /* Assets.xcassets */,
-				1E1086C0239D22D40047F276 /* LaunchScreen.storyboard */,
-				1E1086C3239D22D40047F276 /* Info.plist */,
+				1E1086D7239D23090047F276 /* ViewControllers */,
+				1E1086D8239D23300047F276 /* Supports */,
+				1E1086D9239D23440047F276 /* Resources */,
 			);
 			path = RemoteConfigForceUpdate;
 			sourceTree = "<group>";
@@ -97,6 +95,32 @@
 				1E1086CE239D22D40047F276 /* Info.plist */,
 			);
 			path = RemoteConfigForceUpdateTests;
+			sourceTree = "<group>";
+		};
+		1E1086D7239D23090047F276 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				1E1086BB239D22D20047F276 /* Main.storyboard */,
+				1E1086B9239D22D20047F276 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		1E1086D8239D23300047F276 /* Supports */ = {
+			isa = PBXGroup;
+			children = (
+				1E1086C3239D22D40047F276 /* Info.plist */,
+			);
+			path = Supports;
+			sourceTree = "<group>";
+		};
+		1E1086D9239D23440047F276 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				1E1086C0239D22D40047F276 /* LaunchScreen.storyboard */,
+				1E1086BE239D22D40047F276 /* Assets.xcassets */,
+			);
+			path = Resources;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,7 +388,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y827F3LXSQ;
-				INFOPLIST_FILE = RemoteConfigForceUpdate/Info.plist;
+				INFOPLIST_FILE = RemoteConfigForceUpdate/Supports/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -382,7 +406,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = Y827F3LXSQ;
-				INFOPLIST_FILE = RemoteConfigForceUpdate/Info.plist;
+				INFOPLIST_FILE = RemoteConfigForceUpdate/Supports/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
