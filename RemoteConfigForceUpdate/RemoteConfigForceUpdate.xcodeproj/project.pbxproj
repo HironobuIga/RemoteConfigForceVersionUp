@@ -15,6 +15,8 @@
 		1E1086C2239D22D40047F276 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 1E1086C0239D22D40047F276 /* LaunchScreen.storyboard */; };
 		1E1086CD239D22D40047F276 /* RemoteConfigForceUpdateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1086CC239D22D40047F276 /* RemoteConfigForceUpdateTests.swift */; };
 		1E1086DB23A0EFBF0047F276 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 1E1086DA23A0EFBF0047F276 /* GoogleService-Info.plist */; };
+		1E1086DE23A0F25E0047F276 /* FirebaseRemoteConfigService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1086DD23A0F25E0047F276 /* FirebaseRemoteConfigService.swift */; };
+		1E1086E123A0F3F60047F276 /* AppUtility.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1E1086E023A0F3F60047F276 /* AppUtility.swift */; };
 		9CA020213FFB394C2C623C5E /* Pods_RemoteConfigForceUpdateTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8D238DB96213387850AAA02C /* Pods_RemoteConfigForceUpdateTests.framework */; };
 		E98E3A7D521E46C0B4D110A3 /* Pods_RemoteConfigForceUpdate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 041BA7207D5A0EC8780EF205 /* Pods_RemoteConfigForceUpdate.framework */; };
 /* End PBXBuildFile section */
@@ -43,6 +45,8 @@
 		1E1086CC239D22D40047F276 /* RemoteConfigForceUpdateTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteConfigForceUpdateTests.swift; sourceTree = "<group>"; };
 		1E1086CE239D22D40047F276 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		1E1086DA23A0EFBF0047F276 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		1E1086DD23A0F25E0047F276 /* FirebaseRemoteConfigService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseRemoteConfigService.swift; sourceTree = "<group>"; };
+		1E1086E023A0F3F60047F276 /* AppUtility.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppUtility.swift; sourceTree = "<group>"; };
 		2FC21DD42A1633974D90C412 /* Pods-RemoteConfigForceUpdate.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteConfigForceUpdate.debug.xcconfig"; path = "Target Support Files/Pods-RemoteConfigForceUpdate/Pods-RemoteConfigForceUpdate.debug.xcconfig"; sourceTree = "<group>"; };
 		5F71A88D4823130AE011FFFE /* Pods-RemoteConfigForceUpdateTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RemoteConfigForceUpdateTests.debug.xcconfig"; path = "Target Support Files/Pods-RemoteConfigForceUpdateTests/Pods-RemoteConfigForceUpdateTests.debug.xcconfig"; sourceTree = "<group>"; };
 		8D238DB96213387850AAA02C /* Pods_RemoteConfigForceUpdateTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_RemoteConfigForceUpdateTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -96,6 +100,8 @@
 				1E1086B5239D22D20047F276 /* AppDelegate.swift */,
 				1E1086B7239D22D20047F276 /* SceneDelegate.swift */,
 				1E1086D7239D23090047F276 /* ViewControllers */,
+				1E1086DC23A0F2490047F276 /* Service */,
+				1E1086DF23A0F3E90047F276 /* Utility */,
 				1E1086D8239D23300047F276 /* Supports */,
 				1E1086D9239D23440047F276 /* Resources */,
 			);
@@ -136,6 +142,22 @@
 				1E1086BE239D22D40047F276 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		1E1086DC23A0F2490047F276 /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				1E1086DD23A0F25E0047F276 /* FirebaseRemoteConfigService.swift */,
+			);
+			path = Service;
+			sourceTree = "<group>";
+		};
+		1E1086DF23A0F3E90047F276 /* Utility */ = {
+			isa = PBXGroup;
+			children = (
+				1E1086E023A0F3F60047F276 /* AppUtility.swift */,
+			);
+			path = Utility;
 			sourceTree = "<group>";
 		};
 		681263250D9ABDB0762A1394 /* Frameworks */ = {
@@ -327,7 +349,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				1E1086DE23A0F25E0047F276 /* FirebaseRemoteConfigService.swift in Sources */,
 				1E1086BA239D22D20047F276 /* ViewController.swift in Sources */,
+				1E1086E123A0F3F60047F276 /* AppUtility.swift in Sources */,
 				1E1086B6239D22D20047F276 /* AppDelegate.swift in Sources */,
 				1E1086B8239D22D20047F276 /* SceneDelegate.swift in Sources */,
 			);
