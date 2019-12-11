@@ -27,7 +27,7 @@ protocol RemoteConfigServiceProtocol {
 
 // RemoteConfigのプロパティ取得用Protocolです
 protocol RemoteConfigPropertyProvider {
-    var forceAlertInformation: ForceAlertInformation? { get }
+    func getForceAlertInformation() -> ForceAlertInformation?
 }
 
 final class RemoteConfigService: RemoteConfigServiceProtocol {
@@ -78,6 +78,7 @@ final class RemoteConfigService: RemoteConfigServiceProtocol {
     private func makeDefaultValues(forKeys keys: [RemoteConfigParameterKey]) -> [String: NSObject] {
         var defaultValues = [String: NSObject]()
         keys.forEach { key in
+            // この部分は後ほど可能な限り修正します
             if let defaultValue = key.defaultValue {
                 defaultValues[key.rawValue] = defaultValue
             }
@@ -91,7 +92,8 @@ extension RemoteConfigService: RemoteConfigPropertyProvider {
         return remoteConfig.configValue(forKey: key.rawValue)
     }
     
-    var forceAlertInformation: ForceAlertInformation? {
+    func getForceAlertInformation() -> ForceAlertInformation? {
+        // この部分は後ほど可能な限り修正します
         guard let data = getProperty(for: .forceAlertInformation)?.dataValue else { return nil }
         let decoder = JSONDecoder()
         decoder.keyDecodingStrategy = .convertFromSnakeCase

@@ -106,6 +106,7 @@
 				1E1086D7239D23090047F276 /* ViewControllers */,
 				1E1086DC23A0F2490047F276 /* Service */,
 				1E1086E223A117CD0047F276 /* Entities */,
+				1E75BD7E23A12A2D0017A7BA /* Protocols */,
 				1E1086DF23A0F3E90047F276 /* Utility */,
 				1E1086D8239D23300047F276 /* Supports */,
 				1E1086D9239D23440047F276 /* Resources */,
@@ -169,9 +170,16 @@
 			isa = PBXGroup;
 			children = (
 				1E1086E323A117DD0047F276 /* ForceAlertInformation.swift */,
-				1E75BD7C23A128C50017A7BA /* RemoteConfigDefaultValueProvidable.swift */,
 			);
 			path = Entities;
+			sourceTree = "<group>";
+		};
+		1E75BD7E23A12A2D0017A7BA /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+				1E75BD7C23A128C50017A7BA /* RemoteConfigDefaultValueProvidable.swift */,
+			);
+			path = Protocols;
 			sourceTree = "<group>";
 		};
 		681263250D9ABDB0762A1394 /* Frameworks */ = {

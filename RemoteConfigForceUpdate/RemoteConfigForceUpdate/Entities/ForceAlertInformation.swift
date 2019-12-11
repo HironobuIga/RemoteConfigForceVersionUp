@@ -15,6 +15,17 @@ struct ForceAlertInformation: Codable {
     let url: URL?
 }
 
+extension ForceAlertInformation {
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        title = try container.decode(String.self, forKey: .title)
+        message = try container.decode(String.self, forKey: .message)
+        version = try container.decode(String.self, forKey: .version)
+        let urlString = try? container.decode(String.self, forKey: .url)
+        url = urlString == nil ? nil : URL(string: urlString!)
+    }
+}
+
 extension ForceAlertInformation: RemoteConfigDefaultValueProvidable {
     static func defaultValue() -> NSObject? {
         let defaultValue = ForceAlertInformation(
