@@ -22,6 +22,12 @@ struct AppUtility {
         #endif
     }
     
-    static var isRelease: Bool { buildType == .release }
+    static var isRelease: Bool {
+        buildType == .release
+    }
+    
+    static var currentVersion: String {
+        Bundle.main.object(forInfoDictionaryKey: "CFBundleShortVersionString") as! String
+    }
 }
 
