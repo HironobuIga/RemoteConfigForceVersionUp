@@ -12,40 +12,53 @@ import FirebaseRemoteConfig
 // 取得するパラメータを定義します
 enum RemoteConfigParameterKey: String, CaseIterable {
     case forceAlertInformation = "force_alert_information"
+    
+    var defaultValue: NSObject {
+        switch self {
+        case .forceAlertInformation: return "" as NSObject
+        }
+    }
 }
 
+// RemoteConfigの設定用Protocolです
 protocol RemoteConfigServiceProtocol {
-    var expirationDuration: TimeInterval { get }
-    
     func fetchAllData()
-    func fetchData(forKey key: RemoteConfigParameterKey) -> String?
 }
 
-final class RemoteConfigService: RemoteConfigServiceProtocol {
+// RemoteConfigのプロパティ取得用Protocolです
+protocol RemoteConfigPropertyProvider {
+//    var forceAlertInformation: AnyObject { get }
+}
+
+final class RemoteConfigService: RemoteConfigServiceProtocol, RemoteConfigPropertyProvider {
     
+    // Protocolを使用したDIが可能なようにインスタンスとして扱うようにしています
     // Singletion
     static let shared = RemoteConfigService()
+    
     private init() {
         remoteConfig = RemoteConfig.remoteConfig()
-        if AppUtility.isRelease == false {
+        // releaseビルドではない場合は取得感覚を0としています
+        if !AppUtility.isRelease {
             remoteConfig.configSettings.minimumFetchInterval = 0.0
         }
         
+        // 全てのデータを取得する前提で定義されているパラメータキーに対するデフォルト値を全て入れています
         remoteConfig.setDefaults(makeDefaultValues(forKeys: RemoteConfigParameterKey.allCases))
     }
     
     // MARK: - Prpoerty
     private let remoteConfig: RemoteConfig
-    var expirationDuration: TimeInterval {
+    private var expirationDuration: TimeInterval {
+        // debugビルドでは即時反映, releaseビルドでは一定時間あけるようにします
         switch AppUtility.buildType {
         case .debug: return 0.0
-        case .release: return 60 * 60 // 1時間
+        case .release: return 10 * 60 // 10分間
         }
     }
     
     // MARK: - Function
     func fetchAllData() {
-        
         remoteConfig.fetch(withExpirationDuration: expirationDuration) { [weak self] (fetchStatus, error) in
             guard error == nil else { return }
             
@@ -61,22 +74,12 @@ final class RemoteConfigService: RemoteConfigServiceProtocol {
         }
     }
     
-    func fetchData(forKey key: RemoteConfigParameterKey) -> String? {
-        return remoteConfig.configValue(forKey: key.rawValue).stringValue ??
-            remoteConfig.defaultValue(forKey: key.rawValue)?.stringValue
-    }
-    
+    // RemoteConfigParameterKeyで定義したKeyに対してデフォルト値を決定し代入します
     private func makeDefaultValues(forKeys keys: [RemoteConfigParameterKey]) -> [String: NSObject] {
         var defaultValues = [String: NSObject]()
         keys.forEach { key in
-            var defaultValue: NSString
-            switch key {
-            // パラメータ追加時はここにDefaultParameterを追加
-            case .forceAlertInformation: defaultValue = "1.0.0"
-            }
-            defaultValues[key.rawValue] = defaultValue
+            defaultValues[key.rawValue] = key.defaultValue
         }
-        
         return defaultValues
     }
 }
