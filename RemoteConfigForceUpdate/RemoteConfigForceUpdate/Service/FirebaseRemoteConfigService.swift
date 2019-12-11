@@ -13,9 +13,9 @@ import FirebaseRemoteConfig
 enum RemoteConfigParameterKey: String, CaseIterable {
     case forceAlertInformation = "force_alert_information"
     
-    var defaultValue: NSObject {
+    var defaultValue: NSObject? {
         switch self {
-        case .forceAlertInformation: return "" as NSObject
+        case .forceAlertInformation: return ForceAlertInformation.defaultValue()
         }
     }
 }
@@ -27,10 +27,10 @@ protocol RemoteConfigServiceProtocol {
 
 // RemoteConfigのプロパティ取得用Protocolです
 protocol RemoteConfigPropertyProvider {
-//    var forceAlertInformation: AnyObject { get }
+    var forceAlertInformation: ForceAlertInformation? { get }
 }
 
-final class RemoteConfigService: RemoteConfigServiceProtocol, RemoteConfigPropertyProvider {
+final class RemoteConfigService: RemoteConfigServiceProtocol {
     
     // Protocolを使用したDIが可能なようにインスタンスとして扱うようにしています
     // Singletion
@@ -78,8 +78,23 @@ final class RemoteConfigService: RemoteConfigServiceProtocol, RemoteConfigProper
     private func makeDefaultValues(forKeys keys: [RemoteConfigParameterKey]) -> [String: NSObject] {
         var defaultValues = [String: NSObject]()
         keys.forEach { key in
-            defaultValues[key.rawValue] = key.defaultValue
+            if let defaultValue = key.defaultValue {
+                defaultValues[key.rawValue] = defaultValue
+            }
         }
         return defaultValues
+    }
+}
+
+extension RemoteConfigService: RemoteConfigPropertyProvider {
+    private func getProperty(for key: RemoteConfigParameterKey) -> RemoteConfigValue? {
+        return remoteConfig.configValue(forKey: key.rawValue)
+    }
+    
+    var forceAlertInformation: ForceAlertInformation? {
+        guard let data = getProperty(for: .forceAlertInformation)?.dataValue else { return nil }
+        let decoder = JSONDecoder()
+        decoder.keyDecodingStrategy = .convertFromSnakeCase
+        return try? decoder.decode(ForceAlertInformation.self, from: data)
     }
 }
