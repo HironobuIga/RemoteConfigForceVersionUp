@@ -13,7 +13,7 @@ struct VersionUtility {
     func isForceAlertRequired(currentVersion: String, criteriaVersion: String) -> Bool {
         
         var currentVersionNumbers = currentVersion.components(separatedBy: ".").map { Int($0) ?? 0 }
-        var criteriaVersionNumbers = currentVersion.components(separatedBy: ".").map { Int($0) ?? 0 }
+        var criteriaVersionNumbers = criteriaVersion.components(separatedBy: ".").map { Int($0) ?? 0 }
         let countDifference = currentVersionNumbers.count - criteriaVersionNumbers.count
         
         switch countDifference {
